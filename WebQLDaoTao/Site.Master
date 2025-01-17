@@ -11,6 +11,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style>
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -60,8 +67,8 @@
                 </div>
             </div>
         </div>
-        <footer class="container-fluid text-center alert alert-warning">
-            <p>Nguyễn Hiền Vy: 2321160060</p>
+        <footer class="container-fluid text-center">
+            <p>Sinh viên thực hiện: Nguyễn Hiền Vy - 2321160060</p>
         </footer>
     </form>
 </body>
