@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Contents/Paging.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
     <h2>QUẢN LÝ MÔN HỌC</h2>
@@ -24,19 +24,14 @@
                             <div class="form-group">
                                 <label>Mã môn</label>
                                 <asp:TextBox ID="txtMamh" CssClass="form-control" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="revMamh" runat="server" ErrorMessage="Mã môn học không được để trống" ControlToValidate="txtMamh" Text="(*)" Font-Size="Medium" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="rvMamh" runat="server" ErrorMessage="Mã môn học phải là một số" ControlToValidate="txtMamh" Display="Dynamic" Text="(*)" ForeColor="Red" Font-Size="Medium" ValidationExpression="^[1-9]\d*$"></asp:RegularExpressionValidator>
                             </div>
                             <div class="form-group">
                                 <label>Tên môn</label>
-                                <asp:TextBox ID="txtTenmh" CssClass="form-control" runat="server" ControlToValidate="txtTenmh">
-                                </asp:TextBox><asp:RequiredFieldValidator ID="revTenmh" runat="server" ErrorMessage="Tên môn học không được để trống" Text="(*)" ControlToValidate="txtTenmh" Font-Size="Medium" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtTenmh" CssClass="form-control" runat="server" ControlToValidate="txtTenmh"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label>Số tiết</label>
                                 <asp:TextBox ID="txtsotiet" CssClass="form-control" runat="server" ControlToValidate="txtsotiet"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="revSotiet" runat="server" ErrorMessage="Số tiết không được để trống" Font-Size="Medium" Text="(*)" ControlToValidate="txtsotiet" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="rvSotiet" runat="server" ErrorMessage="Số tiết phải là một số" ValidationExpression="^[1-9]\d*$" Font-Size="Medium" Text="(*)" ForeColor="Red" Display="Dynamic" ControlToValidate="txtsotiet"></asp:RegularExpressionValidator>
                             </div>
                             <div class="form-group">
                                 <asp:Button ID="btnThem" class="btn btn-success" OnClick="btnThem_Click" runat="server" Text="Thêm" />
@@ -62,9 +57,9 @@
                 <asp:TemplateField HeaderText="Chọn tác vụ">
                     <ItemTemplate>
                         <asp:Button ID="btnSua" runat="server" Text="Sửa" CommandName="Edit" CssClass="btn btn-primary"/>
-                        <asp:LinkButton ID="btnXoa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa môn học này ra khỏi danh sách?');"
+                        <asp:LinkButton ID="btnXoa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa môn học này ra khỏi danh sách?')"
                         runat="server" CommandName="Delete" CssClass="btn btn-danger">
-                            <i class="fa-solid fa-trash" style="color: #fff; margin-right: 5px;"></i>Xóa
+                            <i class="bi bi-trash"></i>Xóa
                         </asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
