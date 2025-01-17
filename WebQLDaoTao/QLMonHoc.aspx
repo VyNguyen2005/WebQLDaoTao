@@ -25,14 +25,17 @@
                                 <label>Mã môn</label>
                                 <asp:TextBox ID="txtMamh" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
+
                             <div class="form-group">
                                 <label>Tên môn</label>
                                 <asp:TextBox ID="txtTenmh" CssClass="form-control" runat="server" ControlToValidate="txtTenmh"></asp:TextBox>
                             </div>
+
                             <div class="form-group">
                                 <label>Số tiết</label>
                                 <asp:TextBox ID="txtsotiet" CssClass="form-control" runat="server" ControlToValidate="txtsotiet"></asp:TextBox>
                             </div>
+
                             <div class="form-group">
                                 <asp:Button ID="btnThem" class="btn btn-success" OnClick="btnThem_Click" runat="server" Text="Thêm" />
                             </div>
