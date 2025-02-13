@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
-    <h2>QUẢN LÝ MÔN HỌC</h2>
+    <h5 class="alert alert-success">QUẢN LÝ MÔN HỌC</h5>
     <hr />
     <div>
         <button type="button" class="btn btn-info btn-lg" style="margin-bottom: 5px;" data-toggle="modal" data-target="#modalOpenAddButton">Thêm mới</button>
@@ -52,7 +52,7 @@
     <div>
         <asp:GridView CssClass="table table-bordered" ID="gvMonHoc" runat="server" AutoGenerateColumns="False" DataKeyNames="MaMH"
             OnRowEditing="gvMonHoc_RowEditing" OnRowCancelingEdit="gvMonHoc_RowCancelingEdit" OnRowDeleting="gvMonHoc_RowDeleting"
-            OnRowUpdating="gvMonHoc_RowUpdating" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvMonHoc_PageIndexChanging">
+            OnRowUpdating="gvMonHoc_RowUpdating" AllowPaging="true" PageSize="5" OnPageIndexChanging="gvMonHoc_PageIndexChanging">
             <Columns>
                 <asp:BoundField HeaderText="Mã môn học" DataField="MaMH" ReadOnly="true" />
                 <asp:BoundField HeaderText="Tên môn học" DataField="TenMH" />
