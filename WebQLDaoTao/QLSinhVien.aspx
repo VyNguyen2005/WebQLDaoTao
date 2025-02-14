@@ -84,35 +84,44 @@
         </div>
     </div>
     <asp:Panel ID="Panel1" runat="server" ScrollBars="Both">
-        <asp:GridView DataKeyNames="MaSV" ID="gv_SinhVien" CssClass="table table-bordered table-hover" AllowPaging="True" AutoGenerateColumns="False" runat="server"
-            OnRowEditing="gv_SinhVien_RowEditing" OnRowCancelingEdit="gv_SinhVien_RowCancelingEdit" OnRowDeleting="gv_SinhVien_RowDeleting"
-            OnRowUpdating="gv_SinhVien_RowUpdating" OnPageIndexChanging="gv_SinhVien_PageIndexChanging">
+        <asp:GridView ID="gv_SinhVien" DataKeyNames="Masv" CssClass="table table-bordered table-hover" DataSourceID="ods_SinhVien" AllowPaging="True" AutoGenerateColumns="False" runat="server">
             <Columns>
                 <asp:BoundField DataField="MaSV" HeaderText="MaSV" SortExpression="MaSV" />
                 <asp:BoundField DataField="HoSV" HeaderText="HoSV" SortExpression="HoSV" />
                 <asp:BoundField DataField="TenSV" HeaderText="TenSV" SortExpression="TenSV" />
-                <asp:CheckBoxField DataField="GioiTinh" HeaderText="GioiTinh" SortExpression="GioiTinh" />
+                <asp:TemplateField HeaderText="Giới tính">
+                    <EditItemTemplate>
+                        <asp:DropDownList ID="DropDownList2" runat="server" SelectedValue='<%# Bind("GioiTinh") %>'>
+                            <asp:ListItem Value="True">Nam</asp:ListItem>
+                            <asp:ListItem Value="False">Nữ</asp:ListItem>
+                        </asp:DropDownList>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                    <asp:Label ID="lbGioitinh" runat="server" Text='<%# (bool)Eval("gioiTinh") ? "Nam" : "Nữ" %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:BoundField DataField="NgaySinh" HeaderText="NgaySinh" SortExpression="NgaySinh" />
                 <asp:BoundField DataField="NoiSinh" HeaderText="NoiSinh" SortExpression="NoiSinh" />
                 <asp:BoundField DataField="DiaChi" HeaderText="DiaChi" SortExpression="DiaChi" />
-                <asp:BoundField DataField="MaKH" HeaderText="MaKH" SortExpression="MaKH" />    
-                <asp:TemplateField HeaderText="Chọn tác vụ" ItemStyle-Wrap="false">
-                    <ItemStyle Wrap="false"/>
+                <asp:TemplateField HeaderText="Chọn khoa">
                     <ItemTemplate>
-                        <asp:Button ID="btnSua" runat="server" Text="Sửa" CommandName="Edit" CssClass="btn btn-primary"/>
-                        <asp:LinkButton ID="btnXoa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này ra khỏi danh sách?')"
-                        runat="server" CommandName="Delete" CssClass="btn btn-danger">
-                            <i class="bi bi-trash"></i>Xóa
-                        </asp:LinkButton>
+                        <asp:Label ID="lbMakh" runat="server" Text='<%# Eval("Makh") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CssClass="btn btn-success" CommandName="Update"/>
-                        <asp:Button ID="btnCancel" runat="server" Text="Hủy" CssClass="btn btn-warning" CommandName="Cancel"/>
+                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="ods_Khoa" DataTextField="TenKH" DataValueField="MaKH" SelectedValue='<%# Bind("MaKH") %>'>
+                        </asp:DropDownList>
                     </EditItemTemplate>
                 </asp:TemplateField>
+                <asp:CommandField ButtonType="Button" HeaderText="Chọn tác vụ" ShowDeleteButton="True" ShowEditButton="True" ItemStyle-Wrap="false">
+                    <ItemStyle Wrap="false"/>
+                </asp:CommandField>
             </Columns>
             <HeaderStyle BackColor="#0066cc" ForeColor="#ffffff" />
             <PagerStyle HorizontalAlign="Center" CssClass="pager-style" />
         </asp:GridView>
     </asp:Panel>
+    <asp:ObjectDataSource ID="ods_Khoa" runat="server" SelectMethod="getAll" TypeName="WebQLDaoTao.Models.KhoaDAO"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ods_SinhVien" runat="server" 
+    TypeName="WebQLDaoTao.Models.SinhVienDAO" 
+    SelectMethod="getAll" DeleteMethod="Delete" UpdateMethod="Update" DataObjectTypeName="WebQLDaoTao.Models.SinhVien"/>
 </asp:Content>

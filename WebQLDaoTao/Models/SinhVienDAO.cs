@@ -40,12 +40,12 @@ namespace WebQLDaoTao.Models
             cmd.Parameters.AddWithValue("@makh", sv.MaKH);
             return cmd.ExecuteNonQuery();
         }
-        public int Delete(string masv)
+        public int Delete(SinhVien sv)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["WebQLDaoTao_ConStr"].ConnectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand("delete from SinhVien where masv=@masv", conn);
-            cmd.Parameters.AddWithValue("@masv", masv);
+            cmd.Parameters.AddWithValue("@masv", sv.MaSV);
             return cmd.ExecuteNonQuery();
         }
         public int Insert(SinhVien sv)
@@ -96,6 +96,5 @@ namespace WebQLDaoTao.Models
             }
             return khoaList;
         }
-
     }
 }
