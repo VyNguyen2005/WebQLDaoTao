@@ -96,7 +96,7 @@ namespace WebQLDaoTao
             DateTime ngaysinh = DateTime.Parse(((TextBox)gv_SinhVien.Rows[e.RowIndex].Cells[4].Controls[0]).Text);
             string noisinh = ((TextBox)gv_SinhVien.Rows[e.RowIndex].Cells[5].Controls[0]).Text;
             string diachi = ((TextBox)gv_SinhVien.Rows[e.RowIndex].Cells[6].Controls[0]).Text;
-            string makh = ((DropDownList)gv_SinhVien.Rows[e.RowIndex].Cells[7].Controls[0]).SelectedValue;
+            string makh = ((TextBox)gv_SinhVien.Rows[e.RowIndex].Cells[7].Controls[0]).Text;
             SinhVien svUpdate = new SinhVien
             {
                 MaSV = masv,
