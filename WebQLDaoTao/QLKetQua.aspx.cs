@@ -9,30 +9,15 @@ namespace WebQLDaoTao
 {
     public partial class KetQua : System.Web.UI.Page
     {
-        MonHocDAO mhDao = new MonHocDAO();
         KetQuaDAO kqDAO = new KetQuaDAO();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                ddlMonHoc.DataSource = mhDao.getAll();
-                ddlMonHoc.DataTextField = "tenmh";
-                ddlMonHoc.DataValueField = "mamh";
-                ddlMonHoc.DataBind();
-                ddlMonHoc.Items.Insert(0, new ListItem("--Chọn môn học-", ""));
-            }
+
         }
 
-        protected void gvKetQua_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnLuu_Click(object sender, EventArgs e)
         {
-            string mamh = ddlMonHoc.SelectedValue;
-            gvKetQua.DataSource = kqDAO.findByMaMH(mamh);
-            gvKetQua.DataBind();
-        }
-
-        protected void btLuu_Click(object sender, EventArgs e)
-        {
-            int count = gvKetQua.Rows.Count;
+            int count = gvKetQua.Rows.Count; 
             for (int i = 0; i < count; i++)
             {
                 int id = int.Parse(gvKetQua.DataKeys[i].Value.ToString());
@@ -41,11 +26,17 @@ namespace WebQLDaoTao
             }
         }
 
-        protected void ddlMonHoc_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnXoa_Click(object sender, EventArgs e)
         {
-            string mamh = ddlMonHoc.SelectedValue;
-            gvKetQua.DataSource = kqDAO.findByMaMH(mamh);
-            gvKetQua.DataBind();
-        }
+            foreach (GridViewRow row in gvKetQua.Rows)
+            {
+                CheckBox chkChon = (CheckBox)row.FindControl("chkChon");
+                if (chkChon != null && chkChon.Checked)
+                {
+                    int id = Convert.ToInt32(gvKetQua.DataKeys[row.RowIndex].Value);
+                    kqDAO.Delete(id);
+                    gvKetQua.DataBind();
+                }
+            }
     }
 }
