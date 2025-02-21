@@ -17,7 +17,7 @@ namespace WebQLDaoTao
 
         protected void btnLuu_Click(object sender, EventArgs e)
         {
-            int count = gvKetQua.Rows.Count; 
+            int count = gvKetQua.Rows.Count;
             for (int i = 0; i < count; i++)
             {
                 int id = int.Parse(gvKetQua.DataKeys[i].Value.ToString());
@@ -28,15 +28,27 @@ namespace WebQLDaoTao
 
         protected void btnXoa_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in gvKetQua.Rows)
+            int count = gvKetQua.Rows.Count;
+            for (int i = 0; i < count; i++)
             {
-                CheckBox chkChon = (CheckBox)row.FindControl("chkChon");
-                if (chkChon != null && chkChon.Checked)
-                {
-                    int id = Convert.ToInt32(gvKetQua.DataKeys[row.RowIndex].Value);
+                bool check = ((CheckBox)gvKetQua.Rows[i].FindControl("chkChon")).Checked;
+                if (check){
+                    int id = int.Parse(gvKetQua.DataKeys[i].Value.ToString());
                     kqDAO.Delete(id);
-                    gvKetQua.DataBind();
                 }
             }
+            gvKetQua.DataBind();
+
+        }
+
+        protected void chkAll_CheckedChanged(object sender, EventArgs e)
+        {
+            int count = gvKetQua.Rows.Count;
+            bool check = ((CheckBox)gvKetQua.HeaderRow.FindControl("chkAll")).Checked;
+            for (int i = 0; i < count; i++)
+            {
+                ((CheckBox)gvKetQua.Rows[i].FindControl("chkChon")).Checked = check;
+            }
+        }
     }
 }

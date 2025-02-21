@@ -29,7 +29,11 @@
                     <asp:Button ID="btnLuu" CssClass="btn btn-success" runat="server" Text="Lưu điểm" OnClick="btnLuu_Click"/>
                 </FooterTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Chọn">
+            <asp:TemplateField>
+                <HeaderTemplate>
+                    <asp:CheckBox ID="chkAll" runat="server" OnCheckedChanged="chkAll_CheckedChanged"
+                        CssClass="radio-inline" AutoPostBack="true"/>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <asp:CheckBox ID="chkChon" runat="server" CssClass="radio-inline" AutoPostBack="true"/>
                 </ItemTemplate>
@@ -38,8 +42,10 @@
                 </FooterTemplate>
             </asp:TemplateField>
         </Columns>
+        <EmptyDataTemplate>
+            <div class="alert alert-warning">Không có sinh viên nào đăng kí học phần này</div>
+        </EmptyDataTemplate>
     </asp:GridView>
-   
     <asp:ObjectDataSource ID="ods_MonHoc" runat="server" SelectMethod="getAll" TypeName="WebQLDaoTao.Models.MonHocDAO"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="ods_KetQua" runat="server" SelectMethod="findByMaMH" TypeName="WebQLDaoTao.Models.KetQuaDAO">
         <SelectParameters>
